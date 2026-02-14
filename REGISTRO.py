@@ -14,8 +14,16 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-cred = ServiceAccountCredentials.from_json_keyfile_name(
-    "credenciales.json", scope
+import streamlit as st
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive",
+]
+
+cred = ServiceAccountCredentials.from_json_keyfile_dict(
+    st.secrets["gcp_service_account"], scope
 )
 
 client = gspread.authorize(cred)
@@ -189,4 +197,5 @@ with st.form("registro"):
             ])
 
             st.success(f"Número asignado: {numero}")
+
 
