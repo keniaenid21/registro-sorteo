@@ -183,6 +183,9 @@ with st.form("registro"):
         elif not re.match(r"[^@]+@[^@]+\.[^@]+", correo):
             st.warning("Ingresa un correo electrónico válido.")
 
+        elif not re.match(r"^[0-9]+$", telefono):
+            st.warning("El teléfono solo debe contener números.")
+
         else:
             numero = len(sheet.col_values(1))
 
@@ -195,6 +198,7 @@ with st.form("registro"):
             ])
 
             st.success(f"Número asignado: {numero}")
+
 
 
 
