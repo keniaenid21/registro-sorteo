@@ -145,7 +145,6 @@ div[data-testid="stForm"] {
 """, unsafe_allow_html=True)
 
 
-
 col1, col2, col3 = st.columns([1,3,1])
 with col2:
     st.image("prosolvit.png", use_container_width=True)
@@ -154,8 +153,7 @@ with col2:
 st.markdown("<div class='subtitulo'>Registro de Participantes</div>", unsafe_allow_html=True)
 
 
-
-#REGISTRO DE PARTICIPANTES
+# REGISTRO DE PARTICIPANTES
 with st.form("registro"):
 
     st.markdown("<div class='texto-form'>Nombre completo *</div>", unsafe_allow_html=True)
@@ -167,8 +165,8 @@ with st.form("registro"):
     st.markdown("<div class='texto-form'>Empresa *</div>", unsafe_allow_html=True)
     empresa = st.text_input("", placeholder="Empresa")
 
-    st.markdown("<div class='texto-form'>Descripción</div>", unsafe_allow_html=True)
-    descripcion = st.text_input("", placeholder="Opcional")
+    st.markdown("<div class='texto-form'>Teléfono *</div>", unsafe_allow_html=True)
+    telefono = st.text_input("", placeholder="Ingresa tu teléfono")
 
     c1, c2, c3 = st.columns([1,1,1])
     with c2:
@@ -176,7 +174,7 @@ with st.form("registro"):
 
     if submit:
 
-        if not nombre or not correo or not empresa:
+        if not nombre or not correo or not empresa or not telefono:
             st.warning("Completa todos los campos obligatorios.")
 
         elif not re.match(r"^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$", nombre):
@@ -193,9 +191,10 @@ with st.form("registro"):
                 nombre,
                 correo,
                 empresa,
-                descripcion
+                telefono
             ])
 
             st.success(f"Número asignado: {numero}")
+
 
 
